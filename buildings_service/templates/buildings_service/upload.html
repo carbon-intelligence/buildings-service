@@ -1,0 +1,12 @@
+{% extends 'buildings_service/index.html' %}
+{% block content %}
+  <form method="post" enctype="multipart/form-data">
+    {% csrf_token %}
+    <h1>Upload</h1>
+    <p>File must be uploaded in order: building -> meter -> half hourly data <br>to ensure foreign key constraints</p>
+    <table>
+        {{ form.as_table }}
+    </table>
+    <input type="submit" value='Upload'/>
+  </form>
+{% endblock %}

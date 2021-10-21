@@ -1,0 +1,16 @@
+version: '3'
+
+services:
+  web:
+    build:
+      context: .
+      args:
+        - DOCKER_UNAME=${DOCKER_UNAME}
+        - DOCKER_UID=${DOCKER_UID}
+        - DOCKER_GID=${DOCKER_GID}
+    volumes:
+      - .:/home/${DOCKER_UNAME}/code
+    ports:
+      - '8000:8000'
+    command: ["bash", "run_server.sh"]
+

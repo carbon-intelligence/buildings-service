@@ -1,0 +1,5 @@
+django==3.2.4
+django-jchart==0.4.2
+djangorestframework==3.11.1
+graphene-django==2.13.0
+pytest-django==3.9.0

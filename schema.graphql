@@ -1,0 +1,75 @@
+schema {
+  query: Query
+}
+
+type Building {
+  id: ID!
+  name: String!
+  meters: [Meter]
+}
+
+scalar DateTime
+
+type Fuel {
+  id: ID!
+  unit: FuelUnit!
+  name: String!
+}
+
+enum FuelUnit {
+  M3
+  KWH
+}
+
+type Meter {
+  id: ID!
+  building: Building!
+  fuel: Fuel
+  meterReadings: [MeterReading]
+}
+
+type MeterReading {
+  id: ID!
+  meter: Meter!
+  consumption: Float!
+  readingDateTime: DateTime!
+}
+
+type PaginatedBuildings {
+  page: Int
+  numPages: Int
+  totalResults: Int
+  results: [Building]
+}
+
+type PaginatedFuels {
+  page: Int
+  numPages: Int
+  totalResults: Int
+  results: [Fuel]
+}
+
+type PaginatedMeterReadings {
+  page: Int
+  numPages: Int
+  totalResults: Int
+  results: [MeterReading]
+}
+
+type PaginatedMeters {
+  page: Int
+  numPages: Int
+  totalResults: Int
+  results: [Meter]
+}
+
+type Query {
+  building(id: Int): Building
+  buildings(page: Int!, pageSize: Int!): PaginatedBuildings
+  fuel(id: Int): Fuel
+  fuels(page: Int!, pageSize: Int!): PaginatedFuels
+  meter(id: Int): Meter
+  meters(page: Int!, pageSize: Int!): PaginatedMeters
+  meterReading(id: Int): MeterReading
+  meterReadings(page: Int!, pageSize: Int!): PaginatedMeterReadings
+}
